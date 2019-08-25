@@ -1,11 +1,8 @@
-import subprocess
 import os
 import itertools
 import threading
 import sys
 import time
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 
 done = False
 error = False
@@ -23,12 +20,13 @@ def animate():
     sys.stdout.flush()
     if error == False:
         sys.stdout.write("\rUnet Downloaded  ")
-        sys.stdout.write("\rSetup Completed  ")
     else:
         sys.stdout.write("\rError Occurred. Unable to complete setup!")
 
 
 def download_Unet():
+    from pydrive.auth import GoogleAuth
+    from pydrive.drive import GoogleDrive
     global done
     global error
     try:
@@ -62,15 +60,8 @@ def create_client_images_folder():
 def main():
     global done
     done = False
-
-    try:
-        subprocess.run("pip install -r requirements.txt".split(" "))
-    except Exception as error:
-        print(error)
-    else:
-        print("Dependencies Installed")
-        download_Unet()
-        create_client_images_folder()
+    download_Unet()
+    create_client_images_folder()
 
 
 if __name__ == "__main__":
