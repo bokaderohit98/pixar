@@ -13,7 +13,7 @@
 ###### Due to large size of the model it has to be hosted on google drive. But this script lets you download the model at the appropriate location. Just run the script and complete google auth to download the Unet Model.
 
 ### 3. Start development server 
-`python app.py`
+`python server.py`
 
 ### 4. Mock a client
 `python client.py -i image_name.extension`
