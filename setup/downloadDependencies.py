@@ -1,7 +1,7 @@
 import subprocess
 
 try:
-    subprocess.run('pip install -r requirements.txt'.split(' '))
+    subprocess.run('pip install -r ./setup/requirements.txt'.split(' '))
 except Exception as error:
     print(error)
 else:

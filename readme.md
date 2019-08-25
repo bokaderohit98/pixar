@@ -6,10 +6,10 @@
 # Getting started
 
 ### 1. Install Dependencies
-`python downloadDependencies.py`
+`python ./setup/downloadDependencies.py`
 
 ### 2. Download Unet
-`python downloadModel.py`
+`python ./setup/downloadModel.py`
 ###### Due to large size of the model it has to be hosted on google drive. But this script lets you download the model at the appropriate location. Just run the script and complete google auth to download the Unet Model.
 
 ### 3. Start development server 
