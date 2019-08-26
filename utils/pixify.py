@@ -2,9 +2,7 @@ import cv2
 import os
 
 def pixify(rdn, img, img_path, delete_intermediate=False):
-    print('starting')
     result = rdn.predict(img)
-    print('pixified')
     if delete_intermediate:
         os.remove(img_path)
 

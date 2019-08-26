@@ -33,7 +33,8 @@ class RDN():
             in the compound model built by the trainer class.
     """
 
-    def __init__(self, arch_params={}, patch_size=None, c_dim=3, kernel_size=3, upscaling='ups'):
+    def __init__(self, graph = tf.get_default_graph(), arch_params={}, patch_size=None, c_dim=3, kernel_size=3, upscaling='ups'):
+        self.graph = graph
         self.params = arch_params
         self.C = self.params['C']
         self.D = self.params['D']
@@ -157,7 +158,8 @@ class RDN():
             sr_img: image output.
     """
         lr_img = self.process_array(input_image_array)
-        sr_img = self.model.predict(lr_img)
+        with self.graph.as_default():
+            sr_img = self.model.predict(lr_img)
         sr_img = self.process_output(sr_img)
         return sr_img
 

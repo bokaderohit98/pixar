@@ -12,12 +12,11 @@ args = vars(ap.parse_args())
 
 def transform(models, img_path='input.jpg', delete_intermediate=False, delete_input=False):
     try:
-        # unet, rdn = models
-        unet = models
+        unet, rdn = models
         new_path, colorized = colorize(unet, os.path.join('./images/', img_path))
         print('Done Colorizing')
-        # new_path, result = pixify(rdn, colorized, new_path, delete_intermediate)
-        # print('Done Pixifying')
+        new_path, result = pixify(rdn, colorized, new_path, delete_intermediate)
+        print('Done Pixifying')
     except Exception as error:
         print(error)
         res = "-1"
