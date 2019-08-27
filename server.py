@@ -19,17 +19,30 @@ def rename(filename):
 @app.route("/api", methods=["POST"])
 def pixar():
     try:
+        pixify_image = request.args.get("pixify")
+
+        if pixify_image == "False":
+            pixify_image = False
+        else:
+            pixify_image = True
+
         img_file = request.files["img"]
         filename = img_file.filename
         filename = rename(filename)
+
         if os.path.exists("./images") == False:
             os.mkdir("./images")
+
         img_file.save(os.path.join("./images", filename))
+
     except Exception as error:
         print(error)
         return abort(400)
+
     else:
-        res_path = transform(models, filename, delete_input=True, delete_intermediate=True)
+        res_path = transform(
+            models, filename, pixify_image, delete_input=True, delete_intermediate=True
+        )
         if res_path == "-1":
             return abort(404)
         return send_file(res_path, mimetype="image/jpeg")

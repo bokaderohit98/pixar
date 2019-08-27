@@ -16,6 +16,12 @@
 `python server.py`
 
 ### 4. Mock a client
-`python client.py -i image_name.extension`
+`python client.py -i image_name.extension -p pixify_image?`
 
-###### The image provided in client script must be present in **client_images** folder and the results would be stored in **client_images** folder as well.    
+###### Args:
+- -i : name of image present in client_images folder
+- -p : whether to pixify images or not. Accepted values are 'True' or 'False'
+
+###### The image provided in client script must be present in **client_images** folder and the results would be stored in **client_images** folder as well.
+
+###### If the input images is to be pixified then the image should be really small in dimensions otherwise it would lead to exhaustion of resources.
