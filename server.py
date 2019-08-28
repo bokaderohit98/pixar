@@ -1,4 +1,5 @@
 from flask import Flask, request, send_file, abort
+from flask_cors import CORS
 from utils.loadModels import loadModels
 from utils.transform import transform
 import tensorflow as tf
@@ -6,8 +7,10 @@ from datetime import datetime
 import numpy as np
 import os
 import cv2
+import base64
 
 app = Flask(__name__)
+CORS(app)
 
 
 def rename(filename):
@@ -26,7 +29,10 @@ def pixar():
         else:
             pixify_image = True
 
-        img_file = request.files["img"]
+        print(request.files)
+
+        img_file = request.files["file"]
+
         filename = img_file.filename
         filename = rename(filename)
 
@@ -45,11 +51,15 @@ def pixar():
         )
         if res_path == "-1":
             return abort(404)
-        return send_file(res_path, mimetype="image/jpeg")
+
+        with open(res_path, "rb") as file:
+            encoded = base64.b64encode(file.read())
+
+        return encoded
 
 
 if __name__ == "__main__":
     graph = tf.get_default_graph()
     models = loadModels(graph)
-    app.run(debug=True, port=3000)
+    app.run(debug=True, port=5000)
 
