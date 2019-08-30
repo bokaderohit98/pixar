@@ -1,5 +1,5 @@
 client_images/
 images/
 __pycache__/
-client/
+pixar-ui/
 model.caffemodel
