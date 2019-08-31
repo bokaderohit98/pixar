@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file, abort
+from flask import Flask, request, send_file, abort, send_from_directory
 from flask_cors import CORS
 from utils.loadModels import loadModels
 from utils.transform import transform
@@ -9,7 +9,7 @@ import os
 import cv2
 import base64
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="build")
 CORS(app)
 
 
@@ -17,6 +17,14 @@ def rename(filename):
     timestamp = datetime.timestamp(datetime.now())
     pieces = filename.split(".")
     return ".".join(pieces[:-1]) + str(int(timestamp)) + "." + pieces[-1]
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route("/api", methods=["POST"])

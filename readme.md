@@ -26,7 +26,7 @@
 
 `python server.py`
 
-### 4. Mock a client
+### 4. Mock a client (If you need to test a api)
 
 `python client.py -i image_name.extension -p pixify_image?`
 
@@ -38,3 +38,8 @@
 ###### The image provided in client script must be present in **client_images** folder and the results would be stored in **client_images** folder as well.
 
 ###### If the input images is to be pixified then the image should be really small in dimensions otherwise it would lead to exhaustion of resources.
+
+
+### 5. Head over to localhost:5000 to see the app in action.
+
+###### For Client side development clone [this repository](https://github.com/bokaderohit98/pixar-ui) in current folder. i.e. in pixar. And follow the instructions give in the repository.
