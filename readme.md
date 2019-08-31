@@ -2,9 +2,8 @@
 
 ###### The project aims at colorizing black and white pictures using deep-learning, more specifically by making use of U-Net architecture and LAB color format.
 
-# ******\_******
 
-# Getting started
+## Getting started
 
 ### 0. Install Git LFS
 
@@ -43,3 +42,18 @@
 ### 5. Head over to localhost:5000 to see the app in action.
 
 ###### For Client side development clone [this repository](https://github.com/bokaderohit98/pixar-ui) in current folder. i.e. in pixar. And follow the instructions give in the repository.
+
+---
+## API Reference 
+
+### /
+- Home endpoint
+- returns index.html
+
+### /path:path_name
+- Endpoint to serve static files
+- path_name is the path to any static file on server
+
+### /api?pixify=value
+- Api endpoint to color and pixify image.
+- Here value can be `True` or `False` depending upon whether you want to increase the resolution of image or not. 
